@@ -7,7 +7,7 @@
   - Author
   - Category
 
-- [ ] 3. Create a database named “quotesdb” with 3 tables and these specific column names:
+- [x] 3. Create a database named “quotesdb” with 3 tables and these specific column names:
   - quotes (id, quote, authorId, categoryId) - the last two are foreign keys
   - authors (id, author)
   - categories (id, category)
