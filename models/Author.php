@@ -172,24 +172,29 @@
                         ' WHERE id = :id';
             $success = false;
 
-            $statement = $this->conn->prepare($query);
-            $statement->bindParam(':id', $this->id);
+            try {
+                $statement = $this->conn->prepare($query);
+                $statement->bindParam(':id', $this->id);
 
-            // Execute query
-            if($statement->execute()) {
-                $success = true;
-            } else {
+                // Execute query
+                if($statement->execute() && ($statement->rowCount() > 0)) {
+                    $success = true;
+                } else {
+                    $success = false;
+                }
+
+            } catch (PDOException $e) {
+                // Display error if something goes wrong
+                printf("Error: [%s].\n", $e->getMessage());
                 $success = false;
 
-                // Display error if something goes wrong
-                printf("Error: [%s].\n", $statement->error);
+            } finally {
+                // Close connection
+                $statement->closeCursor();
+
+                // Return true if query executed fine, false otherwise
+                return $success;
             }
-
-            // Close connection
-            $statement->closeCursor();
-
-            // Return true if query executed fine, false otherwise
-            return $success;
         }
     }
 ?>
