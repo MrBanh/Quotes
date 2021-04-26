@@ -49,7 +49,7 @@
             $statement->execute();
 
             // Fetch all records
-            $rows = $statement->fetchAll();
+            $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
 
             // Close connection
             $statement->closeCursor();
@@ -60,6 +60,7 @@
 
         /**
          *  Obtains specific record based on id and set the object's properties
+         *  @return {Array} - An associative array for the record found in DB
          */
         public function read_single() {
             $query = 'SELECT id, ' . $this->col_name .
@@ -68,7 +69,7 @@
             $statement = $this->conn->prepare($query);
 
             // Bind the data
-            $statement->bindParam(':id', $this->get_id());
+            $statement->bindParam(':id', $this->id);
 
             // Execute query
             $statement->execute();
@@ -79,11 +80,13 @@
             // Close connection
             $statement->closeCursor();
 
-            // Set properties if query found record in DB
             if ($row) {
+                // Set object's properties
                 $this->set_id($row['id']);
                 $this->set_name($row[$this->col_name]);
             }
+
+            return $row;
         }
 
         /**
@@ -98,7 +101,7 @@
             $statement = $this->conn->prepare($query);
 
             // Bind data
-            $statement->bindParam(':name', $this->get_name());
+            $statement->bindParam(':name', $this->name);
 
             // Execute query
             if($statement->execute()) {
@@ -130,8 +133,8 @@
             $statement = $this->conn->prepare($query);
 
             // Bind data
-            $statement->bindParam(':name', $this->get_name());
-            $statement->bindParam(':id', $this->get_id());
+            $statement->bindParam(':name', $this->name);
+            $statement->bindParam(':id', $this->id);
 
             // Execute query
             if($statement->execute()) {
@@ -160,7 +163,7 @@
             $success = false;
 
             $statement = $this->conn->prepare($query);
-            $statement->bindParam(':id', $this->get_id());
+            $statement->bindParam(':id', $this->id);
 
             // Execute query
             if($statement->execute()) {
