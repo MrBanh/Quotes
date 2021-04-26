@@ -98,26 +98,29 @@
                         ' VALUES (:name)';
             $success = false;
 
-            $statement = $this->conn->prepare($query);
+            try {
+                $statement = $this->conn->prepare($query);
 
-            // Bind data
-            $statement->bindParam(':name', $this->name);
+                // Bind data
+                $statement->bindParam(':name', $this->name);
 
-            // Execute query
-            if($statement->execute()) {
-                $success = true;
-            } else {
-                $success = false;
+                // Execute query
+                if($statement->execute()) {
+                    $success = true;
+                } else {
+                    $success = false;
+                }
 
+                // Return true if query executed fine, false otherwise
+                return $success;
+
+            } catch (PDOException $e) {
                 // Display error if something goes wrong
-                printf("Error: [%s].\n", $statement->error);
+                printf("Error: [%s].\n", $e->getMessage());
+            } finally {
+                // Close connection
+                $statement->closeCursor();
             }
-
-            // Close connection
-            $statement->closeCursor();
-
-            // Return true if query executed fine, false otherwise
-            return $success;
         }
 
         /**
