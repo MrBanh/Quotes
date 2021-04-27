@@ -38,7 +38,12 @@ if(isset($data->id) && isset($data->author)) {
 
     } else {
         echo json_encode(array('message' => 'Author Not Updated'));
-        http_response_code($status);
+
+        switch($status->errorInfo[1]) {
+            case 1062:
+                http_response_code(409);        // 409 Conflict
+                break;
+        }
     }
 
 } else {

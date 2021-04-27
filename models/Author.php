@@ -37,7 +37,7 @@
         // Methods for DB CRUD Operations
 
         /**
-         *  @return {Array} - An associative array of all the records in DB
+         *  @return Array - An associative array of all the records in DB
          */
         public function read() {
             $query = 'SELECT id, ' . $this->col_name .
@@ -60,7 +60,7 @@
 
         /**
          *  Obtains specific record based on id and set the object's properties
-         *  @return {Array} - An associative array for the record found in DB
+         *  @return Array - An associative array for the record found in DB
          */
         public function read_single() {
             $query = 'SELECT id, ' . $this->col_name .
@@ -85,7 +85,7 @@
 
         /**
          *  Add a new record to the table in the database
-         *  @return {bool} - True if new record added to database, false otherwise
+         *  @return bool - True if new record added to database, false otherwise
          */
         public function create() {
             $query = 'INSERT INTO  '. $this->table . ' (' . $this->col_name . ')' .
@@ -117,9 +117,9 @@
 
         /**
          *  Updates the record in the table in database
-         *  @return {bool|int} - True if query execution was successful and affected >1 row in DB.
+         *  @return bool|PDOException - True if query execution was successful and affected >1 row in DB.
          *                       Returns it query executed but no rows affected.
-         *                       Returns a status code if encounter PDOException error.
+         *                       Returns error object if query results in an error thrown
          */
         public function update() {
             // If the record with specific id doesn't exist, no need to update
@@ -146,12 +146,7 @@
             } catch (PDOException $e) {
                 // Display error if something goes wrong
                 printf("Error: [%s].\n", $e->getMessage());
-
-                switch($e->errorInfo[1]) {
-                    case 1062:
-                        return 409;     // Status Code 409 Conflict
-                        break;
-                }
+                return $e;
 
             } finally {
                 // Close connection
@@ -161,7 +156,7 @@
 
         /**
          *  Deletes a record from database based on id
-         *  @return {bool} - True if record was deleted, false otherwise
+         *  @return bool - True if record was deleted, false otherwise
          */
         public function delete() {
             $query = 'DELETE FROM ' . $this->table .
