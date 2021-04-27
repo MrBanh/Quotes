@@ -21,12 +21,17 @@ if(isset($author_id)) {
     $author->set_id($author_id);
     $result = $author->read_single();
 
+    // Check if author found
     if ($result) {
         echo json_encode($result);
+        http_response_code(200);        // 200  OK
     } else {
-        echo json_encode(array('message' => 'No author found'));
+        echo json_encode(array('message' => 'No Author Found'));
+        http_response_code(404);        // 404  Not Found
     }
 
 } else {
+    // Not valid query param for id
     echo json_encode(array('message' => 'Not a valid author id'));
+    http_response_code(400);        // 400  Bad Request
 }

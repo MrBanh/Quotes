@@ -25,6 +25,8 @@ $author->set_name($data->author);
 // Create Author
 if($author->create()) {
     echo json_encode(array('message' => 'Author Created'));
+    http_response_code(201);        // 201 Created
 } else {
     echo json_encode(array('message' => 'Author Not Created'));
+    http_response_code(409);        // 409 Conflict
 }

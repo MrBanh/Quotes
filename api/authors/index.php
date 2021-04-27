@@ -20,6 +20,8 @@ $results = $author->read();
 // Check if any results found
 if(count($results) > 0) {
     echo json_encode($results);
+    http_response_code(200);        // 200 OK
 } else {
     echo json_encode(array('message' => 'No Authors Found'));
+    http_response_code(404);        // 404 Not Found
 }

@@ -22,9 +22,11 @@ $data = json_decode(file_get_contents('php://input'));
 // Set the object property - MUST contain the id
 $author->set_id($data->id);
 
-// Create Author
+// Delete Author
 if($author->delete()) {
     echo json_encode(array('message' => 'Author Deleted'));
+    http_response_code(200);        // 200 OK
 } else {
     echo json_encode(array('message' => 'Author Not Deleted'));
+    http_response_code(404);        // 404 Not Found
 }

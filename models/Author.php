@@ -96,7 +96,6 @@
         public function create() {
             $query = 'INSERT INTO  '. $this->table . ' (' . $this->col_name . ')' .
                         ' VALUES (:name)';
-            $success = false;
 
             try {
                 $statement = $this->conn->prepare($query);
@@ -106,34 +105,32 @@
 
                 // Execute query
                 if($statement->execute() && ($statement->rowCount() > 0)) {
-                    $success = true;
+                    return true;
                 } else {
-                    $success = false;
+                    return false;
                 }
 
             } catch (PDOException $e) {
                 // Display error if something goes wrong
                 printf("Error: [%s].\n", $e->getMessage());
-                $success = false;
+                return false;
 
             } finally {
                 // Close connection
                $statement->closeCursor();
-
-                // Return true if query executed fine, false otherwise
-                return $success;
             }
         }
 
         /**
          *  Updates the record in the table in database
-         *  @return {bool} - True if query execution was successful, false otherwise
+         *  @return {bool|int} - True if query execution was successful and affected >1 row in DB.
+         *                       Returns it query executed but no rows affected.
+         *                       Returns a status code if encounter PDOException error.
          */
         public function update() {
             $query = 'UPDATE ' . $this->table .
                         ' SET ' . $this->col_name . ' = :name' .
                         ' WHERE id = :id';
-            $success = false;
 
             try {
                 $statement = $this->conn->prepare($query);
@@ -144,22 +141,24 @@
 
                 // Execute query
                 if($statement->execute() && ($statement->rowCount() > 0)) {
-                    $success = true;
+                    return true;
                 } else {
-                    $success = false;
+                    return false;
                 }
 
             } catch (PDOException $e) {
                 // Display error if something goes wrong
                 printf("Error: [%s].\n", $e->getMessage());
-                $success = false;
+
+                switch($e->errorInfo[1]) {
+                    case 1062:
+                        return 409;     // Status Code 409 Conflict
+                        break;
+                }
 
             } finally {
                 // Close connection
                 $statement->closeCursor();
-
-                // Return true if query executed fine, false otherwise
-                return $success;
             }
         }
 
@@ -170,7 +169,6 @@
         public function delete() {
             $query = 'DELETE FROM ' . $this->table .
                         ' WHERE id = :id';
-            $success = false;
 
             try {
                 $statement = $this->conn->prepare($query);
@@ -178,22 +176,19 @@
 
                 // Execute query
                 if($statement->execute() && ($statement->rowCount() > 0)) {
-                    $success = true;
+                    return true;
                 } else {
-                    $success = false;
+                    return false;
                 }
 
             } catch (PDOException $e) {
                 // Display error if something goes wrong
                 printf("Error: [%s].\n", $e->getMessage());
-                $success = false;
+                return false;
 
             } finally {
                 // Close connection
                 $statement->closeCursor();
-
-                // Return true if query executed fine, false otherwise
-                return $success;
             }
         }
     }

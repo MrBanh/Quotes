@@ -23,9 +23,16 @@ $data = json_decode(file_get_contents('php://input'));
 $author->set_id($data->id);
 $author->set_name($data->author);
 
-// Create Author
-if($author->update()) {
+// Update Author
+$status = $author->update();
+
+if($status === true) {
     echo json_encode(array('message' => 'Author Updated'));
+    http_response_code(200);        // 200 OK
+} elseif ($status === false) {
+    echo json_encode(array('message' => 'Author Not Updated'));
+    http_response_code(404);        // 404 Not Found
 } else {
     echo json_encode(array('message' => 'Author Not Updated'));
+    http_response_code($status);
 }
