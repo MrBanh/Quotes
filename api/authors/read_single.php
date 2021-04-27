@@ -32,6 +32,6 @@ if(isset($author_id)) {
 
 } else {
     // Not valid query param for id
-    echo json_encode(array('message' => 'Not a valid author id'));
+    echo json_encode(array('message' => 'No Author Found. MUST contain \'id\' param.'));
     http_response_code(400);        // 400  Bad Request
 }

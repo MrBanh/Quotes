@@ -19,20 +19,29 @@ $author = new Author($db);
 // Get raw json data from request
 $data = json_decode(file_get_contents('php://input'));
 
-// Set the object property - MUST contain id and author
-$author->set_id($data->id);
-$author->set_name($data->author);
+// Make sure raw json data includes both 'id' and 'author'
+if(isset($data->id) && isset($data->author)) {
+    // Set the object property - MUST contain id and author
+    $author->set_id($data->id);
+    $author->set_name($data->author);
 
-// Update Author
-$status = $author->update();
+    // Update Author
+    $status = $author->update();
 
-if($status === true) {
-    echo json_encode(array('message' => 'Author Updated'));
-    http_response_code(200);        // 200 OK
-} elseif ($status === false) {
-    echo json_encode(array('message' => 'Author Not Updated'));
-    http_response_code(404);        // 404 Not Found
+    if($status === true) {
+        echo json_encode(array('message' => 'Author Updated'));
+        http_response_code(200);        // 200 OK
+
+    } elseif ($status === false) {
+        echo json_encode(array('message' => 'Author Not Updated'));
+        http_response_code(404);        // 404 Not Found
+
+    } else {
+        echo json_encode(array('message' => 'Author Not Updated'));
+        http_response_code($status);
+    }
+
 } else {
-    echo json_encode(array('message' => 'Author Not Updated'));
-    http_response_code($status);
+    echo json_encode(array('message' => 'Author Not Updated. MUST contain \'id\' and \'author\'.'));
+    http_response_code(400);        // 400 Bad Request
 }

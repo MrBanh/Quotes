@@ -80,12 +80,6 @@
             // Close connection
             $statement->closeCursor();
 
-            if ($row) {
-                // Set object's properties
-                $this->set_id($row['id']);
-                $this->set_name($row[$this->col_name]);
-            }
-
             return $row;
         }
 
@@ -128,6 +122,11 @@
          *                       Returns a status code if encounter PDOException error.
          */
         public function update() {
+            // If the record with specific id doesn't exist, no need to update
+            if (!$this->read_single()) {
+                return false;
+            }
+
             $query = 'UPDATE ' . $this->table .
                         ' SET ' . $this->col_name . ' = :name' .
                         ' WHERE id = :id';
@@ -140,10 +139,8 @@
                 $statement->bindParam(':id', $this->id);
 
                 // Execute query
-                if($statement->execute() && ($statement->rowCount() > 0)) {
+                if($statement->execute()) {
                     return true;
-                } else {
-                    return false;
                 }
 
             } catch (PDOException $e) {
