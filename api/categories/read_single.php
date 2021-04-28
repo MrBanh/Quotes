@@ -17,7 +17,7 @@ $category = new Category($db);
 // Get id from query params
 $category_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-if(isset($category_id)) {
+if($category_id) {
     $category->set_id($category_id);
     $result = $category->read_single();
 
@@ -32,6 +32,6 @@ if(isset($category_id)) {
 
 } else {
     // Not valid query param for id
-    echo json_encode(array('message' => 'No Category Found. MUST contain \'id\' param.'));
+    echo json_encode(array('message' => 'No Category Found. MUST contain valid \'id\' param.'));
     http_response_code(400);        // 400  Bad Request
 }

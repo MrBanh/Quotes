@@ -17,7 +17,7 @@ $author = new Author($db);
 // Get id from query params
 $author_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-if(isset($author_id)) {
+if($author_id) {
     $author->set_id($author_id);
     $result = $author->read_single();
 
@@ -32,6 +32,6 @@ if(isset($author_id)) {
 
 } else {
     // Not valid query param for id
-    echo json_encode(array('message' => 'No Author Found. MUST contain \'id\' param.'));
+    echo json_encode(array('message' => 'No Author Found. MUST contain valid \'id\' param.'));
     http_response_code(400);        // 400  Bad Request
 }
