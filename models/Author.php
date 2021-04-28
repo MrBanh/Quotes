@@ -105,8 +105,6 @@
                 }
 
             } catch (PDOException $e) {
-                // Display error if something goes wrong
-                printf("Error: [%s].\n", $e->getMessage());
                 return false;
 
             } finally {
@@ -144,8 +142,6 @@
                 }
 
             } catch (PDOException $e) {
-                // Display error if something goes wrong
-                printf("Error: [%s].\n", $e->getMessage());
                 return $e;
 
             } finally {
@@ -174,8 +170,6 @@
                 }
 
             } catch (PDOException $e) {
-                // Display error if something goes wrong
-                printf("Error: [%s].\n", $e->getMessage());
                 return false;
 
             } finally {
