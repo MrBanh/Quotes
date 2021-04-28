@@ -158,14 +158,16 @@
          *  @return bool - True if new record added to database, false otherwise
          */
         public function create() {
-            $query = 'INSERT INTO  '. $this->table . ' (' . $this->col_name . ')' .
-                        ' VALUES (:quote)';
+            $query = 'INSERT INTO  '. $this->table . ' (quote, authorId, categoryId)' .
+                        ' VALUES (:quote, :authorId, :categoryId)';
 
             try {
                 $statement = $this->conn->prepare($query);
 
                 // Bind data
                 $statement->bindParam(':quote', $this->quote);
+                $statement->bindParam(':authorId', $this->authorId);
+                $statement->bindParam(':categoryId', $this->categoryId);
 
                 // Execute query
                 if($statement->execute() && ($statement->rowCount() > 0)) {

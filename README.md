@@ -2,7 +2,7 @@
 
 - [ ] 1. You will build a REST API for quotations - both famous quotes and user submissions
 
-- [ ] 2. ALL quotes are required to have ALL 3 of the following:
+- [x] 2. ALL quotes are required to have ALL 3 of the following:
   - Quote (the quotation itself)
   - Author
   - Category
@@ -42,7 +42,7 @@
     **NOTE**: In the above examples, the parameter numbers are examples. You could change the limit=5 or
     the authorId=2, etc. and the requests should still have the appropriate response.
 
-- [ ] 6. Your REST API will provide responses to the following POST requests:
+- [x] 6. Your REST API will provide responses to the following POST requests:
 
   | Request:                             | Response (fields):                                          |
   | ------------------------------------ | ----------------------------------------------------------- |
@@ -83,7 +83,7 @@
 
 - [ ] 10. Your project should have a GitHub repository with a pipeline connected to Heroku. The project should utilize JawsDB on Heroku for the database. As with the Zippys project, you may develop the database locally on MySQL first.
 
-- [ ] 11. You will need to populate your own quotes database. You may want to first create secure admin pages that allow you to add authors and categories and then create a page to add quotes as we did with Zippys. This is up to you as these additional pages are not required (although useful). You may choose to simply populate the database manually or with Postman to start out. A good site to find quotes by category (topic) is: https://www.brainyquote.com/ Minimum 5 categories. Minimum 5 authors. Minimum 25 quotes total for initial data.
+- [x] 11. You will need to populate your own quotes database. You may want to first create secure admin pages that allow you to add authors and categories and then create a page to add quotes as we did with Zippys. This is up to you as these additional pages are not required (although useful). You may choose to simply populate the database manually or with Postman to start out. A good site to find quotes by category (topic) is: https://www.brainyquote.com/ Minimum 5 categories. Minimum 5 authors. Minimum 25 quotes total for initial data.
 
 - [ ] 12. Submit the following:
   - A link to your GitHub code repository (no code updates after the due date accepted on the final project)
