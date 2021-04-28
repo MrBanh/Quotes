@@ -7,33 +7,33 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type
 
 // Import files needed for database connection
 require_once('../../config/Database.php');
-require_once('../../models/Author.php');
+require_once('../../models/Category.php');
 
 // Instantiate DB and connect
 $database = new Database();
 $db = $database->connect();
 
-// Instantiate new Author object
-$author = new Author($db);
+// Instantiate new Category object
+$category = new Category($db);
 
 // Get raw json data from request
 $data = json_decode(file_get_contents('php://input'));
 
-// Make sure raw json data includes correct key ('author')
-if(isset($data->author)) {
-    // Set the object property - MUST contain the author
-    $author->set_name($data->author);
+// Make sure raw json data includes correct key ('category')
+if(isset($data->category)) {
+    // Set the object property - MUST contain the category
+    $category->set_name($data->category);
 
-    // Create Author
-    if($author->create()) {
-        echo json_encode(array('message' => 'Author Created'));
+    // Create Category
+    if($category->create()) {
+        echo json_encode(array('message' => 'Category Created'));
         http_response_code(201);        // 201 Created
     } else {
-        echo json_encode(array('message' => 'Author Not Created'));
+        echo json_encode(array('message' => 'Category Not Created'));
         http_response_code(409);        // 409 Conflict
     }
 
 } else {
-    echo json_encode(array('message' => 'Author Not Created. MUST contain \'author\'.'));
+    echo json_encode(array('message' => 'Category Not Created. MUST contain \'category\'.'));
     http_response_code(400);        // 400 Bad Request
 }
