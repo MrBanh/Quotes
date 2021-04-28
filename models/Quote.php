@@ -127,9 +127,15 @@
          *  @return Array - An associative array for the record found in DB
          */
         public function read_single() {
-            $query = 'SELECT id, ' . $this->col_name .
-                        ' FROM ' . $this->table .
-                        ' WHERE id = :id LIMIT 1';
+            $query = 'SELECT q.id as id, q.quote as quote, a.author as author, c.category as category
+                        FROM ' . $this->table . ' q
+                        LEFT JOIN
+                            authors a ON q.authorId = a.id
+                        LEFT JOIN
+                            categories c ON q.categoryId = c.id
+                        WHERE
+                            q.id = :id LIMIT 1';
+
             $statement = $this->conn->prepare($query);
 
             // Bind the data
