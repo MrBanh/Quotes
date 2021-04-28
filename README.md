@@ -12,7 +12,7 @@
   - authors (id, author)
   - categories (id, category)
 
-- [ ] 4. Response requirements:
+- [x] 4. Response requirements:
   - All requests should provide a JSON data response.
   - All requests for quotes should return the id, quote, author, and category fields.
   - If the parameter “authorId” is received, the response should only include quotes attributed to the specified author.
@@ -20,7 +20,7 @@
   - If “authorId” and “categoryId” parameters are passed to the endpoint, the response should only include quotes from the specified author that are within the specified category.
   - If the parameter “limit” is passed with a request, the response should limit the quotes in the response to no more than the number specified.
 
-- [ ] 5. Your REST API will provide responses to the following GET requests:
+- [x] 5. Your REST API will provide responses to the following GET requests:
   - /api/quotes/ requests return (id, quote, author, category)
   - /api/authors/ requests return (id, author)
   - /api/categories/ requests return (id, category)
@@ -92,7 +92,7 @@
 
 ## Extra Credit
 
-- [ ] Not Required but useful: Allow a “random=true” parameter to be sent via GET request so the response received does not always contain the same quotes. The response should contain random quotes that still adhere to the other specified parameters. For example, this will allow users of the API to retrieve a single random quote, a single random quote from Bill Gates, or a single random quote about life (category).
+- [x] Not Required but useful: Allow a “random=true” parameter to be sent via GET request so the response received does not always contain the same quotes. The response should contain random quotes that still adhere to the other specified parameters. For example, this will allow users of the API to retrieve a single random quote, a single random quote from Bill Gates, or a single random quote about life (category).
 
 ## Important Note:
 
