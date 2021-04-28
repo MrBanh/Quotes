@@ -29,7 +29,7 @@ if(isset($data->author)) {
         echo json_encode(array('message' => 'Author Created'));
         http_response_code(201);        // 201 Created
     } else {
-        echo json_encode(array('message' => 'Author Not Created'));
+        echo json_encode(array('message' => 'Author Not Created. Duplicate entry.'));
         http_response_code(409);        // 409 Conflict
     }
 

@@ -37,10 +37,10 @@ if(isset($data->id) && isset($data->author)) {
         http_response_code(404);        // 404 Not Found
 
     } else {
-        echo json_encode(array('message' => 'Author Not Updated'));
 
         switch($status->errorInfo[1]) {
             case 1062:
+                echo json_encode(array('message' => 'Author Not Updated. Duplicate entry.'));
                 http_response_code(409);        // 409 Conflict
                 break;
         }
