@@ -29,7 +29,7 @@ if(isset($data->id)) {
         echo json_encode(array('message' => 'Category Deleted'));
         http_response_code(200);        // 200 OK
     } else {
-        echo json_encode(array('message' => 'Category Not Deleted'));
+        echo json_encode(array('message' => 'Category Not Deleted. Category not found.'));
         http_response_code(404);        // 404 Not Found
     }
 

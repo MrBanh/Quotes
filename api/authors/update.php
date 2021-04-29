@@ -33,7 +33,7 @@ if(isset($data->id) && isset($data->author)) {
         http_response_code(200);        // 200 OK
 
     } elseif ($status === false) {
-        echo json_encode(array('message' => 'Author Not Updated'));
+        echo json_encode(array('message' => 'Author Not Updated. Author not found.'));
         http_response_code(404);        // 404 Not Found
 
     } else {

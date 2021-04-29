@@ -33,7 +33,7 @@ if(isset($data->id) && isset($data->category)) {
         http_response_code(200);        // 200 OK
 
     } elseif ($status === false) {
-        echo json_encode(array('message' => 'Category Not Updated'));
+        echo json_encode(array('message' => 'Category Not Updated. Category not found.'));
         http_response_code(404);        // 404 Not Found
 
     } else {

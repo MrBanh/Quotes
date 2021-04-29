@@ -55,7 +55,7 @@
     **Note**: To create an author, the POST submission MUST contain the author.\
     **Note**: To create a category, the POST submission MUST contain the category.
 
-- [ ] 7. Your REST API will provide responses to the following PUT requests:
+- [x] 7. Your REST API will provide responses to the following PUT requests:
 
   | Request:                             | Response (fields):                                             |
   | ------------------------------------ | -------------------------------------------------------------- |
