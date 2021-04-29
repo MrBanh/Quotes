@@ -79,7 +79,7 @@
   \
     **Note**: All delete requests require the id to be submitted.
 
-- [ ] 9. A public web page available in your root directory (index.php) which displays all quotes and provides select (dropdown) menus allowing a user to filter by author, category, or both. Responsive design for viewing in all viewports from mobile to desktop.
+- [x] 9. A public web page available in your root directory (index.php) which displays all quotes and provides select (dropdown) menus allowing a user to filter by author, category, or both. Responsive design for viewing in all viewports from mobile to desktop.
 
 - [ ] 10. Your project should have a GitHub repository with a pipeline connected to Heroku. The project should utilize JawsDB on Heroku for the database. As with the Zippys project, you may develop the database locally on MySQL first.
 
