@@ -7,7 +7,6 @@
         // DB Connection
         private $conn;
         private $table = 'quotes';
-        private $col_name = 'quote';
 
         // Properties for SQL Query clauses
         private $limit;     // Limits results from query
@@ -155,7 +154,7 @@
 
         /**
          *  Add a new record to the table in the database
-         *  @return bool - True if new record added to database, false otherwise
+         *  @return bool|PDOException - True if new record added to database, false otherwise
          */
         public function create() {
             $query = 'INSERT INTO  '. $this->table . ' (quote, authorId, categoryId)' .
@@ -177,7 +176,7 @@
                 }
 
             } catch (PDOException $e) {
-                return false;
+                return $e;
 
             } finally {
                 // Close connection

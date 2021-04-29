@@ -39,8 +39,12 @@ if(isset($data->id, $data->quote, $data->authorId, $data->categoryId)) {
         http_response_code(404);        // 404 Not Found
 
     } else {
-
+        // SQL Integrity Constraint Violations
         switch($status->errorInfo[1]) {
+            case 1452:
+                echo json_encode(array('message' => 'Quote Not Updated. \'authorId\' or \'categoryId\' (or both) you provided does not exist.'));
+                http_response_code(400);        // 400 Bad Request
+                break;
             case 1062:
                 echo json_encode(array('message' => 'Quote Not Updated. Duplicate entry.'));
                 http_response_code(409);        // 409 Conflict
