@@ -1,6 +1,6 @@
 # INF653 Back End Web Development - Final Project Requirements
 
-- [ ] 1. You will build a REST API for quotations - both famous quotes and user submissions
+- [x] 1. You will build a REST API for quotations - both famous quotes and user submissions
 
 - [x] 2. ALL quotes are required to have ALL 3 of the following:
   - Quote (the quotation itself)
@@ -68,7 +68,7 @@
     **Note**: To create an author, the PUT submission MUST contain the id and author.\
     **Note**: To create a category, the PUT submission MUST contain the id and category.
 
-- [ ] 8. Your REST API will provide responses to the following DELETE requests:
+- [x] 8. Your REST API will provide responses to the following DELETE requests:
 
   | Request:                             | Response (fields):                                             |
   | ------------------------------------ | -------------------------------------------------------------- |
