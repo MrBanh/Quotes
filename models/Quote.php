@@ -198,7 +198,7 @@
             }
 
             $query = 'UPDATE ' . $this->table .
-                        ' SET ' . $this->col_name . ' = :quote' .
+                        ' SET quote = :quote, authorId = :authorId, categoryId = :categoryId' .
                         ' WHERE id = :id';
 
             try {
@@ -206,6 +206,8 @@
 
                 // Bind data
                 $statement->bindParam(':quote', $this->quote);
+                $statement->bindParam(':authorId', $this->authorId);
+                $statement->bindParam(':categoryId', $this->categoryId);
                 $statement->bindParam(':id', $this->id);
 
                 // Execute query
