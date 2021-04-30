@@ -81,11 +81,11 @@
 
 - [x] 9. A public web page available in your root directory (index.php) which displays all quotes and provides select (dropdown) menus allowing a user to filter by author, category, or both. Responsive design for viewing in all viewports from mobile to desktop.
 
-- [ ] 10. Your project should have a GitHub repository with a pipeline connected to Heroku. The project should utilize JawsDB on Heroku for the database. As with the Zippys project, you may develop the database locally on MySQL first.
+- [x] 10. Your project should have a GitHub repository with a pipeline connected to Heroku. The project should utilize JawsDB on Heroku for the database. As with the Zippys project, you may develop the database locally on MySQL first.
 
 - [x] 11. You will need to populate your own quotes database. You may want to first create secure admin pages that allow you to add authors and categories and then create a page to add quotes as we did with Zippys. This is up to you as these additional pages are not required (although useful). You may choose to simply populate the database manually or with Postman to start out. A good site to find quotes by category (topic) is: https://www.brainyquote.com/ Minimum 5 categories. Minimum 5 authors. Minimum 25 quotes total for initial data.
 
-- [ ] 12. Submit the following:
+- [x] 12. Submit the following:
   - A link to your GitHub code repository (no code updates after the due date accepted on the final project)
   - A link to your deployed project on Heroku
   - A one page PDF document discussing what challenges you faced while building your project.

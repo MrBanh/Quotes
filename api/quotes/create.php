@@ -38,11 +38,7 @@ if(isset($data->quote, $data->authorId, $data->categoryId)) {
         switch($status->errorInfo[1]) {
             case 1452:
                 echo json_encode(array('message' => 'Quote Not Created. \'authorId\' or \'categoryId\' (or both) you provided does not exist.'));
-                http_response_code(400);        // 400 Bad Request
-                break;
-            case 1062:
-                echo json_encode(array('message' => 'Quote Not Created. Duplicate entry.'));
-                http_response_code(409);        // 409 Conflict
+                http_response_code(404);        // 404 Not Found
                 break;
         }
     }
